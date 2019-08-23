@@ -1,0 +1,23 @@
+{
+    "name": "jimchen/laravel-aliyunvod-callback",
+    "description": "Aliyun MNS Vod MessageCallback Queue Driver For Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JimChen",
+            "email": "imjimchen@163.com"
+        }
+    ],
+    "require": {
+        "php": "~5.5|~7.0",
+        "illuminate/queue": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/console": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+        "lokielse/aliyun-open-api-mns": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JimChen\\AliyunVodMNS\\": "src"
+        }
+    }
+}
