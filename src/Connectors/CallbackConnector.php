@@ -13,6 +13,8 @@ namespace JimChen\AliyunVodMNS\Connectors;
 use Aliyun\MNS\Client;
 use Illuminate\Queue\Connectors\ConnectorInterface;
 use Illuminate\Support\Arr;
+use JimChen\AliyunVodMNS\Adaptors\CallbackAdapter;
+use JimChen\AliyunVodMNS\CallbackQueue;
 
 class CallbackConnector implements ConnectorInterface
 {

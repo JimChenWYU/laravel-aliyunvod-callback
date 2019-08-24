@@ -15,7 +15,9 @@ use Aliyun\MNS\Requests\SendMessageRequest;
 use Exception;
 use Illuminate\Contracts\Queue\Queue as QueueContract;
 use Illuminate\Queue\Queue;
+use JimChen\AliyunVodMNS\Adaptors\CallbackAdapter;
 use JimChen\AliyunVodMNS\Concerns\CallbackHandlerStore;
+use JimChen\AliyunVodMNS\Jobs\CallbackJob;
 
 class CallbackQueue extends Queue implements QueueContract
 {
