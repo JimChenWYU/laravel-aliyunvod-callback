@@ -28,5 +28,27 @@ class Message extends Collection
 
             return $this->get($messageParameter);
         }
+
+        return parent::__call($method, $parameters);
+    }
+
+    /**
+     * Get the extend to array
+     *
+     * @return array
+     */
+    public function getExtendArray()
+    {
+        return json_decode($this->getExtend(), true);
+    }
+
+    /**
+     * Get the extend to Message
+     *
+     * @return Message
+     */
+    public function getExtendMessage()
+    {
+        return new static($this->getExtendArray());
     }
 }
