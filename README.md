@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require jimchen/laravel-vod-messagecallback -vvv
+$ composer require jimchen/laravel-aliyunvod-callback -vvv
 ```
 
 ## Usage
