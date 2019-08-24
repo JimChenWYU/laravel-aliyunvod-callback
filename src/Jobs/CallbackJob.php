@@ -164,7 +164,7 @@ class CallbackJob extends Job implements JobContract
      */
     protected function getRegisteredHandlers($handler)
     {
-        return $this->vodCallbackQueue->getRegisteredHandlers($handler);
+        return $this->vodCallbackQueue->getRegisteredHandlers($handler, $this->container);
     }
 
     /**

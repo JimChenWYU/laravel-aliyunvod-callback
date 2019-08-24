@@ -10,6 +10,8 @@
 
 namespace JimChen\AliyunVodMNS\Concerns;
 
+use Illuminate\Contracts\Container\Container;
+
 trait CallbackHandlerStore
 {
     use HasDispatcher;
@@ -92,17 +94,18 @@ trait CallbackHandlerStore
     /**
      * Get registered handlers
      *
-     * @param string $handler
+     * @param string    $handler
+     * @param Container $container
      * @return array|null
      */
-    public function getRegisteredHandlers($handler)
+    public function getRegisteredHandlers($handler, Container $container)
     {
         if (isset(static::$dispatcher)) {
             if (method_exists(static::$dispatcher, 'dispatch')) {
-                return static::$dispatcher->dispatch($this->getStoreKey($handler));
+                return static::$dispatcher->dispatch($this->getStoreKey($handler), $container);
             }
 
-            return static::$dispatcher->fire($this->getStoreKey($handler));
+            return static::$dispatcher->fire($this->getStoreKey($handler), $container);
         }
 
         return null;
