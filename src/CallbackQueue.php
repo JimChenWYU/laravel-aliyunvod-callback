@@ -61,7 +61,7 @@ class CallbackQueue extends Queue implements QueueContract
      */
     public function size($queue = null)
     {
-        throw new Exception('The size method is not supported in non-debug mode');
+        throw new Exception('The size method is not supported');
     }
 
     /**
@@ -74,9 +74,11 @@ class CallbackQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
-        $payload = $this->createPayload($job, $data);
+//        $payload = $this->createPayload($job, $data);
 
-        return $this->pushRaw($payload, $queue);
+//        return $this->pushRaw($payload, $queue);
+
+        throw new Exception('The push method is not supported');
     }
 
     /**
