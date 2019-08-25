@@ -1,0 +1,32 @@
+<?php
+
+namespace DummyNamespace;
+
+use JimChen\AliyunVodMNS\Message;
+use Illuminate\Queue\InteractsWithQueue;
+use JimChen\AliyunVodMNS\Contracts\EventHandler;
+
+class DummyClass implements EventHandler
+{
+    use InteractsWithQueue;
+
+    /**
+     * Get the callback event name.
+     *
+     * @return string
+     */
+    public static function getEventType(): string
+    {
+        return DummyClass;
+    }
+
+    /**
+     * Callback Handler.
+     *
+     * @return mixed
+     */
+    public function handle(Message $message)
+    {
+        //
+    }
+}

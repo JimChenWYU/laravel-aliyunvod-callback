@@ -12,6 +12,7 @@ namespace JimChen\AliyunVodMNS;
 
 use Illuminate\Support\ServiceProvider;
 use JimChen\AliyunVodMNS\Connectors\CallbackConnector;
+use JimChen\AliyunVodMNS\Console\CallbackEventMakeCommand;
 use JimChen\AliyunVodMNS\Console\CallbackFlushCommand;
 
 class VodCallbackServiceProvider extends ServiceProvider
@@ -61,6 +62,10 @@ class VodCallbackServiceProvider extends ServiceProvider
     {
         $this->app->singleton('command.queue:vodcallback:flush', function () {
             return new CallbackFlushCommand();
+        });
+
+        $this->app->singleton('command.vodcallback:make:callback', function () {
+            return new CallbackEventMakeCommand($this->app['files']);
         });
     }
 }
