@@ -26,7 +26,7 @@ class Message extends Collection
         if (Str::startsWith($method, 'get')) {
             $messageParameter = Str::replaceFirst('get', '', $method);
 
-            return $this->get(Str::studly($messageParameter));
+            return $this->get($messageParameter);
         }
 
         return parent::__call($method, $parameters);
