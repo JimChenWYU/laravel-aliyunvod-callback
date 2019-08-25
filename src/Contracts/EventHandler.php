@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the jimchen/laravel-vod-messagecallback.
+ * This file is part of the jimchen/laravel-aliyunvod-callback.
  *
  * (c) JimChen <imjimchen@163.com>
  *
