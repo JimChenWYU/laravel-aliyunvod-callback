@@ -115,7 +115,9 @@ class CallbackJob extends Job implements JobContract
         }
         if (empty($handlers = $this->getRegisteredHandlers($message['EventType']))) {
             $this->delete();
-            throw new \InvalidArgumentException("Seems it can't be handled. [$raw]");
+
+//            throw new \InvalidArgumentException("Seems it can't be handled. [$raw]");
+            return;
         }
 
         $this->container->instance(Message::class, new Message($message));
