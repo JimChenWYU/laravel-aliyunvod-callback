@@ -31,8 +31,7 @@ class CallbackConnector implements ConnectorInterface
             $this->getAdaptor($config),
             $config['queue'],
             Arr::get($config, 'events', []),
-            Arr::get($config, 'wait_seconds'),
-            Arr::get($config, 'debug', false)
+            Arr::get($config, 'wait_seconds')
         );
     }
 

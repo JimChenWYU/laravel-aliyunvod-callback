@@ -45,14 +45,8 @@ class CallbackQueue extends Queue implements QueueContract
      */
     private $waitSeconds;
 
-    /**
-     * @var bool
-     */
-    private $debug;
-
-    public function __construct(CallbackAdapter $adapter, $queue, array $events, $waitSeconds = null, $debug = false)
+    public function __construct(CallbackAdapter $adapter, $queue, array $events, $waitSeconds = null)
     {
-        $this->debug = $debug;
         $this->adapter = $adapter;
         $this->default = $queue;
         $this->waitSeconds = $waitSeconds;
@@ -80,13 +74,9 @@ class CallbackQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
-        if ($this->debug) {
-            $payload = $this->createPayload($job, $data);
+        $payload = $this->createPayload($job, $data);
 
-            return $this->pushRaw($payload, $queue);
-        }
-
-        throw new Exception('The push method is not supported in non-debug mode');
+        return $this->pushRaw($payload, $queue);
     }
 
     /**
@@ -99,14 +89,10 @@ class CallbackQueue extends Queue implements QueueContract
      */
     public function pushRaw($payload, $queue = null, array $options = [])
     {
-        if ($this->debug) {
-            $message = new SendMessageRequest($payload);
-            $response = $this->adapter->useQueue($this->getQueue($queue))->sendMessage($message);
+        $message = new SendMessageRequest($payload);
+        $response = $this->adapter->useQueue($this->getQueue($queue))->sendMessage($message);
 
-            return $response->getMessageId();
-        }
-
-        throw new Exception('The pushRaw method is not supported in non-debug mode');
+        return $response->getMessageId();
     }
 
     /**
@@ -132,21 +118,17 @@ class CallbackQueue extends Queue implements QueueContract
      */
     public function later($delay, $job, $data = '', $queue = null)
     {
-        if ($this->debug) {
-            if (method_exists($this, 'getSeconds')) {
-                $seconds = $this->getSeconds($delay);
-            } else {
-                $seconds = $this->secondsUntil($delay);
-            }
-
-            $payload = $this->createPayload($job, $data);
-            $message = new SendMessageRequest($payload, $seconds);
-            $response = $this->adapter->useQueue($this->getQueue($queue))->sendMessage($message);
-
-            return $response->getMessageId();
+        if (method_exists($this, 'getSeconds')) {
+            $seconds = $this->getSeconds($delay);
+        } else {
+            $seconds = $this->secondsUntil($delay);
         }
 
-        throw new Exception('The later method is not supported in non-debug mode');
+        $payload = $this->createPayload($job, $data);
+        $message = new SendMessageRequest($payload, $seconds);
+        $response = $this->adapter->useQueue($this->getQueue($queue))->sendMessage($message);
+
+        return $response->getMessageId();
     }
 
     /**
