@@ -17,7 +17,7 @@ class DummyClass implements EventHandler
      */
     public static function getEventType(): string
     {
-        return DummyClass;
+        return 'DummyClass';
     }
 
     /**
