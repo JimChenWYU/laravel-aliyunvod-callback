@@ -11,7 +11,7 @@ class CallbackEventMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'vodcallback:make:callback';
+    protected $name = 'make:vodcallback:callback';
 
     /**
      * The console command description.

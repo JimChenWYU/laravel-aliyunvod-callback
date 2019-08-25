@@ -29,6 +29,9 @@ class VodCallbackServiceProvider extends ServiceProvider
         CallbackQueue::setEventDispatcher($this->app['events']);
 
         $this->registerConnector($this->app['queue']);
+
+        $this->commands('command.queue.vodcallback.flush');
+        $this->commands('command.make.vodcallback.callback');
     }
 
     /**
@@ -60,11 +63,11 @@ class VodCallbackServiceProvider extends ServiceProvider
      */
     private function registerCommand()
     {
-        $this->app->singleton('command.queue:vodcallback:flush', function () {
+        $this->app->singleton('command.queue.vodcallback.flush', function () {
             return new CallbackFlushCommand();
         });
 
-        $this->app->singleton('command.vodcallback:make:callback', function () {
+        $this->app->singleton('command.make.vodcallback.callback', function () {
             return new CallbackEventMakeCommand($this->app['files']);
         });
     }
